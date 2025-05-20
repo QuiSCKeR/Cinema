@@ -1,22 +1,19 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import './MovieCard.css';
 
 const MovieCard = ({ movie }) => {
-  const navigate = useNavigate();
-
-  const handleBooking = () => {
-    navigate(`/booking/${movie.id}`);
-  };
-
   return (
     <div className="movie-card">
-      <img src={movie.image} alt={movie.title} />
+      <img src={movie.poster} alt={movie.title} className="movie-poster" />
       <div className="movie-info">
-        <h2>{movie.title}</h2>
+        <h3>{movie.title}</h3>
         <p>{movie.description}</p>
         <p><strong>Жанр:</strong> {movie.genre}</p>
-        <p><strong>Сеанс:</strong> {movie.time}</p>
-        <button onClick={handleBooking}>Забронювати</button>
+        <p><strong>Сеанс:</strong> {movie.sessionTime}</p>
+        <Link to={`/booking/${movie.id}`}>
+          <button className="booking-button">Забронювати</button>
+        </Link>
       </div>
     </div>
   );

@@ -1,27 +1,28 @@
-// src/data/movies.js
-export const movies = [
+const movies = [
   {
     id: 1,
-    title: "Interstellar",
-    genre: "Sci-Fi",
-    description: "A mind-blowing journey through space and time.",
-    time: "19:00",
-    image: "/pics/interstellar2.jpg"
+    title: "Інтерстеллар",
+    description: "Науково-фантастичний фільм про подорож у космосі.",
+    genre: "Фантастика",
+    poster: "/pics/Interstellar2.jpg",
+    sessionTime: "2025-05-21 19:00"
   },
   {
     id: 2,
-    title: "Dune",
-    genre: "Sci-Fi",
-    description: "An epic from a distant and dangerous desert planet.",
-    time: "21:00",
-    image: "/pics/Dune.jpg"
+    title: "Темний лицар",
+    description: "Бетмен протистоїть Джокеру.",
+    genre: "Екшн",
+    poster: "/pics/Batman.jpg",
+    sessionTime: "2025-05-21 21:00"
   },
   {
     id: 3,
-    title: "Inception",
-    genre: "Thriller",
-    description: "A mind-bending journey through dreams.",
-    time: "20:00",
-    image: "/pics/Inception.jpg"
+    title: "Початок",
+    description: "Команда викрадає ідеї через сни.",
+    genre: "Трилер",
+    poster: "/pics/Inception.jpg",
+    sessionTime: "2025-05-22 18:00"
   }
 ];
+
+export default movies;

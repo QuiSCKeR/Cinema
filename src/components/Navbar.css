@@ -34,7 +34,7 @@
   color: #f1c40f;
 }
 
-/* Адаптація для мобільних */
+/* Адаптація для мобільних пристроїв */
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;

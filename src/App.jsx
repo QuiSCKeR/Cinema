@@ -1,18 +1,16 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import Booking from './pages/Booking';
-import Navbar from './components/Navbar';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import MovieList from './components/MovieList';
+import Booking from './components/Booking'; // ІМПОРТ Booking
 
 function App() {
   return (
-    <BrowserRouter>
-      <Navbar />
+    <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/booking/:id" element={<Booking />} />
+        <Route path="/" element={<MovieList />} />
+        <Route path="/booking/:id" element={<Booking />} /> {/* МАРШРУТ Booking */}
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 

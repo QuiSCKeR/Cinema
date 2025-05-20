@@ -1,52 +1,39 @@
 import React, { useState } from 'react';
 import './CinemaHall.css';
 
-const TOTAL_ROWS = 5;
-const TOTAL_COLUMNS = 8;
-
 const CinemaHall = () => {
+  const rows = 5;
+  const seatsPerRow = 10;
   const [selectedSeats, setSelectedSeats] = useState([]);
-  const bookedSeats = [3, 4, 10];
 
-  const handleSeatClick = (seatNumber) => {
-    if (bookedSeats.includes(seatNumber)) return;
-    setSelectedSeats(
-      selectedSeats.includes(seatNumber)
-        ? selectedSeats.filter(seat => seat !== seatNumber)
-        : [...selectedSeats, seatNumber]
+  const toggleSeat = (seat) => {
+    setSelectedSeats(prev =>
+      prev.includes(seat)
+        ? prev.filter(s => s !== seat)
+        : [...prev, seat]
     );
   };
 
-  const renderSeats = () => {
-    const seats = [];
-    for (let row = 0; row < TOTAL_ROWS; row++) {
-      for (let col = 0; col < TOTAL_COLUMNS; col++) {
-        const seatNumber = row * TOTAL_COLUMNS + col + 1;
-        const isBooked = bookedSeats.includes(seatNumber);
-        const isSelected = selectedSeats.includes(seatNumber);
-        seats.push(
-          <div
-            key={seatNumber}
-            className={`seat ${isBooked ? 'booked' : isSelected ? 'selected' : 'available'}`}
-            onClick={() => handleSeatClick(seatNumber)}
-          >
-            {seatNumber}
-          </div>
-        );
-      }
-    }
-    return seats;
-  };
-
   return (
-    <div>
-      <h2>Оберіть місця</h2>
-      <div className="cinema-hall">
-        {renderSeats()}
-      </div>
-      <div className="selected-info">
-        <h3>Вибрані місця: {selectedSeats.length > 0 ? selectedSeats.join(', ') : 'Немає'}</h3>
-      </div>
+    <div className="cinema-hall">
+      {[...Array(rows)].map((_, rowIdx) => (
+        <div key={rowIdx} className="row">
+          {[...Array(seatsPerRow)].map((_, seatIdx) => {
+            const seatNumber = `${rowIdx + 1}-${seatIdx + 1}`;
+            const isSelected = selectedSeats.includes(seatNumber);
+            return (
+              <div
+                key={seatNumber}
+                className={`seat ${isSelected ? 'selected' : ''}`}
+                onClick={() => toggleSeat(seatNumber)}
+              >
+                {seatIdx + 1}
+              </div>
+            );
+          })}
+        </div>
+      ))}
+      <p>Вибрані місця: {selectedSeats.join(', ')}</p>
     </div>
   );
 };

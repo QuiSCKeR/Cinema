@@ -1,26 +1,23 @@
-// src/components/MovieList.jsx
 import React, { useState } from 'react';
 import MovieCard from './MovieCard';
-import { movies } from '../data/movies';
 import './MovieList.css';
 
-const MovieList = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+const MovieList = ({ movies }) => {
+  const [searchTerm, setSearchTerm] = useState('');
 
   const filteredMovies = movies.filter(movie =>
-    movie.title.toLowerCase().includes(searchQuery.toLowerCase())
+    movie.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
     <div className="movie-list-container">
-      <div className="search-bar">
-        <input
-          type="text"
-          placeholder="Search movie..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-      </div>
+      <input
+        type="text"
+        placeholder="Пошук фільму..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className="search-input"
+      />
       <div className="movie-list">
         {filteredMovies.map(movie => (
           <MovieCard key={movie.id} movie={movie} />
