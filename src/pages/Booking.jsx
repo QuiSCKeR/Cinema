@@ -1,11 +1,12 @@
-import { useRouter } from "next/router";
+import { useRouter } from "react-router-dom";
 import MovieCard from "../../components/MovieCard";
+
 
 const movies = [
   {
     id: "1",
     title: "Початок",
-    image: "https://upload.wikimedia.org/wikipedia/en/7/7f/Inception_ver3.jpg",
+    poster: "https://upload.wikimedia.org/wikipedia/en/7/7f/Inception_ver3.jpg",
     description: "Команда викрадає ідеї через сни.",
     genre: "Трилер",
     date: "2025-05-22 18:00",
@@ -13,7 +14,7 @@ const movies = [
   {
     id: "2",
     title: "Матриця",
-    image: "https://upload.wikimedia.org/wikipedia/en/c/c1/The_Matrix_Poster.jpg",
+    poster: "https://upload.wikimedia.org/wikipedia/en/c/c1/The_Matrix_Poster.jpg",
     description: "Герой прокидається в комп'ютерній симуляції.",
     genre: "Фантастика",
     date: "2025-05-23 20:00",
@@ -21,7 +22,7 @@ const movies = [
   {
     id: "3",
     title: "Інтерстеллар",
-    image: "https://upload.wikimedia.org/wikipedia/en/b/bc/Interstellar_film_poster.jpg",
+    poster: "https://upload.wikimedia.org/wikipedia/en/b/bc/Interstellar_film_poster.jpg",
     description: "Космічна подорож задля порятунку людства.",
     genre: "Наукова фантастика",
     date: "2025-05-24 19:00",

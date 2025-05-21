@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import MovieList from './components/MovieList';
-import Booking from './components/Booking'; // ІМПОРТ Booking
+import Home from './pages/Home';
+import BookingStandalone from './pages/BookingStandalone';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<MovieList />} />
-        <Route path="/booking/:id" element={<Booking />} /> {/* МАРШРУТ Booking */}
+        <Route path="/" element={<Home />} />
+        <Route path="/booking" element={<BookingStandalone />} /> {/* ← нова сторінка */}
       </Routes>
     </Router>
   );
