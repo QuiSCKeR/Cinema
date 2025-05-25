@@ -1,51 +1,69 @@
-import { useRouter } from "react-router-dom";
-import MovieCard from "../../components/MovieCard";
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import CinemaHall from '../components/CinemaHall';
+import BookingForm from '../components/BookingForm';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+const Booking = ({ movies }) => {
+  const { movieId } = useParams();
+  const [selectedSeats, setSelectedSeats] = useState([]);
+  const [bookingStep, setBookingStep] = useState('select-seats');
+  
+  const movie = movies.find(m => m.id === parseInt(movieId));
 
-const movies = [
-  {
-    id: "1",
-    title: "Початок",
-    poster: "https://upload.wikimedia.org/wikipedia/en/7/7f/Inception_ver3.jpg",
-    description: "Команда викрадає ідеї через сни.",
-    genre: "Трилер",
-    date: "2025-05-22 18:00",
-  },
-  {
-    id: "2",
-    title: "Матриця",
-    poster: "https://upload.wikimedia.org/wikipedia/en/c/c1/The_Matrix_Poster.jpg",
-    description: "Герой прокидається в комп'ютерній симуляції.",
-    genre: "Фантастика",
-    date: "2025-05-23 20:00",
-  },
-  {
-    id: "3",
-    title: "Інтерстеллар",
-    poster: "https://upload.wikimedia.org/wikipedia/en/b/bc/Interstellar_film_poster.jpg",
-    description: "Космічна подорож задля порятунку людства.",
-    genre: "Наукова фантастика",
-    date: "2025-05-24 19:00",
-  },
-];
+  if (!movie) {
+    return <div>Фільм не знайдено</div>;
+  }
 
-export default function BookingPage() {
-  const router = useRouter();
-  const { id } = router.query;
-
-  const movie = movies.find((m) => m.id === id);
-
-  const handleBooking = () => {
-    alert(`Бронювання фільму: ${movie.title}`);
-    // Або перехід: router.push('/success');
+  const handleSeatsSelection = (seats) => {
+    setSelectedSeats(seats);
   };
 
-  if (!movie) return <div className="p-4">Фільм не знайдено</div>;
+  const handleBookingSuccess = () => {
+    setSelectedSeats([]);
+    setBookingStep('select-seats');
+  };
 
   return (
-    <div className="min-h-screen p-6 bg-gray-100">
-      <h1 className="text-2xl font-bold mb-6">Бронювання: {movie.title}</h1>
-      <MovieCard movie={movie} onBook={handleBooking} />
+    <div className="booking-page">
+      <h1>Бронювання квитків на "{movie.title}"</h1>
+      
+      {bookingStep === 'select-seats' && (
+        <>
+          <CinemaHall 
+            rows={5} 
+            seatsPerRow={10} 
+            movieId={movieId}
+            onSeatsChange={handleSeatsSelection}
+          />
+          {selectedSeats.length > 0 && (
+            <button 
+              onClick={() => setBookingStep('fill-form')}
+              className="proceed-button"
+            >
+              Продовжити бронювання
+            </button>
+          )}
+        </>
+      )}
+      
+      {bookingStep === 'fill-form' && (
+        <BookingForm
+          selectedSeats={selectedSeats}
+          movieId={movieId}
+          onBookingSuccess={handleBookingSuccess}
+        />
+      )}
+      
+      <ToastContainer />
     </div>
   );
-}
+};
+
+Booking.propTypes = {
+  movies: PropTypes.array.isRequired
+};
+
+export default Booking;

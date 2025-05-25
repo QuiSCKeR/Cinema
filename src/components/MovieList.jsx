@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import MovieCard from './MovieCard';
-import './MovieList.css';
 
-const MovieList = ({ movies }) => {
+const MovieList = ({ movies = [] }) => { // Додано значення за замовчуванням
   const [searchTerm, setSearchTerm] = useState('');
 
   const filteredMovies = movies.filter(movie =>
@@ -10,21 +10,29 @@ const MovieList = ({ movies }) => {
   );
 
   return (
-    <div className="movie-list-container">
+    <div className="movie-list">
       <input
         type="text"
-        placeholder="Пошук фільму..."
+        placeholder="Пошук фільмів..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         className="search-input"
       />
-      <div className="movie-list">
+      <div className="movies-grid">
         {filteredMovies.map(movie => (
           <MovieCard key={movie.id} movie={movie} />
         ))}
       </div>
     </div>
   );
+};
+
+MovieList.propTypes = {
+  movies: PropTypes.array
+};
+
+MovieList.defaultProps = {
+  movies: [] // Додано значення за замовчуванням
 };
 
 export default MovieList;

@@ -1,19 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import MovieList from '../components/MovieList';
-import movies from '../data/movies';
-import { Link } from 'react-router-dom';
 
-const Home = () => {
+const Home = ({ movies }) => {
   return (
     <div className="home-page">
-      <h1>Список фільмів</h1>
+      <h1>Фільми в кінотеатрі</h1>
       <MovieList movies={movies} />
     </div>
   );
 };
-<Link to="/booking">
-  <button className="mt-4 px-4 py-2 bg-green-600 text-white rounded-md">
-    Перейти до сторінки бронювання
-  </button>
-</Link>
+
+Home.propTypes = {
+  movies: PropTypes.array.isRequired
+};
+
 export default Home;

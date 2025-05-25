@@ -1,15 +1,15 @@
+/* Загальні стилі */
 body {
-  margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
-}
-
-h1, h2 {
-  text-align: center;
-}
-
-.movie-list-container {
+  margin: 0;
   padding: 20px;
+  background-color: #f5f5f5;
+}
+
+/* Стилі для списку фільмів */
+.movie-list {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .search-input {
@@ -17,68 +17,187 @@ h1, h2 {
   padding: 10px;
   margin-bottom: 20px;
   font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
-.movie-list {
-  display: flex;
-  flex-wrap: wrap;
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
-  justify-content: center;
 }
 
+/* Стилі для картки фільму */
 .movie-card {
-  background-color: #fff;
-  padding: 15px;
+  background: white;
   border-radius: 8px;
-  width: 200px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  text-align: center;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.movie-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .movie-poster {
   width: 100%;
   height: auto;
-  border-radius: 4px;
+  display: block;
 }
 
-.booking-button {
-  margin-top: 10px;
+.movie-card h3 {
+  margin: 15px 15px 0;
+  font-size: 1.2rem;
+}
+
+.movie-card p {
+  margin: 10px 15px;
+  color: #666;
+}
+
+.sessions {
+  margin: 15px;
+  padding: 10px 0;
+  border-top: 1px solid #eee;
+}
+
+.session {
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+}
+
+.book-button {
+  display: block;
+  margin: 15px;
   padding: 10px;
   background-color: #007bff;
-  color: #fff;
-  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
   border-radius: 4px;
-  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.booking-button:hover {
+.book-button:hover {
   background-color: #0056b3;
 }
 
+/* Стилі для кінозалу */
+.booking-page {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .cinema-hall {
-  padding: 20px;
+  margin-top: 30px;
   text-align: center;
 }
 
-.row {
+.screen {
+  width: 80%;
+  height: 20px;
+  margin: 0 auto 30px;
+  background: linear-gradient(to bottom, #ccc, #eee);
+  border-radius: 50%/10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.seats-grid {
   display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.seat-row {
+  display: flex;
+  gap: 10px;
 }
 
 .seat {
   width: 30px;
   height: 30px;
-  background-color: green;
-  margin: 4px;
+  background-color: #4CAF50;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 4px;
   cursor: pointer;
-  text-align: center;
-  line-height: 30px;
-  color: white;
-  transition: 0.3s;
+  transition: background-color 0.3s;
+}
+
+.seat:hover {
+  background-color: #45a049;
 }
 
 .seat.selected {
-  background-color: blue;
+  background-color: #2196F3;
+}
+
+.selected-seats {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+/* Стилі для форми бронювання */
+.booking-form {
+  max-width: 500px;
+  margin: 30px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.error {
+  color: #dc3545;
+  font-size: 0.9rem;
+  display: block;
+  margin-top: 5px;
+}
+
+.submit-button, .proceed-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.submit-button:hover, .proceed-button:hover {
+  background-color: #218838;
+}
+
+/* Стилі для місць */
+.seat.booked {
+  background-color: #dc3545;
+  cursor: not-allowed;
 }

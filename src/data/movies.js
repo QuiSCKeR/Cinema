@@ -1,28 +1,24 @@
-const movies = [
+export const movies = [
   {
     id: 1,
-    title: "Інтерстеллар",
-    description: "Науково-фантастичний фільм про подорож у космосі.",
-    genre: "Фантастика",
-    poster: "/pics/Interstellar2.jpg",
-    sessionTime: "2025-05-21 19:00"
+    title: "Фільм 1",
+    description: "Опис фільму 1",
+    genre: "Драма",
+    posterUrl: "https://via.placeholder.com/300x450",
+    sessions: [
+      { time: "10:00", date: "2023-06-01" },
+      { time: "14:00", date: "2023-06-01" }
+    ]
   },
   {
     id: 2,
-    title: "Темний лицар",
-    description: "Бетмен протистоїть Джокеру.",
-    genre: "Екшн",
-    poster: "/pics/Batman.jpg",
-    sessionTime: "2025-05-21 21:00"
-  },
-  {
-    id: 3,
-    title: "Початок",
-    description: "Команда викрадає ідеї через сни.",
-    genre: "Трилер",
-    poster: "/pics/Inception.jpg",
-    sessionTime: "2025-05-22 18:00"
+    title: "Фільм 2",
+    description: "Опис фільму 2",
+    genre: "Комедія",
+    posterUrl: "https://via.placeholder.com/300x450",
+    sessions: [
+      { time: "12:00", date: "2023-06-01" },
+      { time: "18:00", date: "2023-06-01" }
+    ]
   }
 ];
-
-export default movies;
